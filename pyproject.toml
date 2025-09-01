@@ -6,8 +6,10 @@ authors = [
     {name = "Vitor Soier",email = "vitorsoier1@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 dependencies = [
+    "dotenv (>=0.9.9,<0.10.0)",
+    "requests (>=2.32.5,<3.0.0)"
 ]
 
 [tool.poetry]
