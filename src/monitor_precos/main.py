@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from urllib import response
 import requests
 from dotenv import dotenv_values
 
@@ -103,8 +104,18 @@ class MercadoLivreAPI:
             except Exception:
                 print("Resposta de erro (texto):", response.text)
             raise e
-    
+
+    def obter_preco_produto(self, item_id, chanel='channel_marketplace'):
+        envs = self.get_envs()
+        token = envs.get("TOKEN")
+        url_preco = f'{self.base_url}/items/{item_id}/prices'
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        }
+        response = requests.get(url_preco, headers=headers)
+        print(response.json())
 
 ml_api = MercadoLivreAPI('.env')
-ml_api.criar_usuario_test('MLB')
-
+ml_api.get_access_token()
+ml_api.obter_preco_produto('MLB3128412969')
